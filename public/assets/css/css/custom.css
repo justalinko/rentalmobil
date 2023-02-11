@@ -1,0 +1,50 @@
+.text-reor{
+    color: #DF3B35;
+}
+
+.bg-reor{
+    background-color: #DF3B35;
+}
+
+.active-li{
+    background: #DF3B35;
+    color: #fff;
+    border: 1px solid transparent;
+}
+
+.block-27 ul li.active a, .block-27 ul li.active span {
+    background: #DF3B35;
+    color: #fff;
+    border: 1px solid transparent;
+}
+
+.block-27 ul li a, .block-27 ul li span {
+    color: #000;
+}
+
+.font-sm{
+    font-size: smaller;
+}
+
+.font-md{
+    font-size: medium;
+}
+
+.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active{
+    color:#DF3B35;
+}
+
+.active-bnk{
+    background-color: rgb(238, 238, 238);
+}
+
+.active-bank{
+    color: #000;
+}
+
+.active-bank:hover{
+    color: #000;
+    background-color: rgb(238, 238, 238);
+
+}
+
