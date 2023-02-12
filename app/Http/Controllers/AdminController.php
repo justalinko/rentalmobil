@@ -43,6 +43,8 @@ class AdminController extends Controller
             $name = time().$icon->getClientOriginalName();
             $icon->move(public_path().'/assets/images/',$name);
             $web->icon = url('assets/images/'.$name);
+        }else{
+            $web->icon = fake('id')->imageUrl(50,50,'transport');
         }
        
         $web->title = $request->title;

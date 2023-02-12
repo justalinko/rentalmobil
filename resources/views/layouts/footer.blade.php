@@ -72,7 +72,7 @@
 @if(session('success'))
 <script>
     Swal.fire({
-        position: 'top-end',
+    
         icon: 'success',
         title : 'Success',
         text: "{{session('success')}}",
@@ -97,7 +97,7 @@
 @if(session('errors'))
 <script>
     Swal.fire({
-        position: 'top-end',
+
         icon: 'error',
         title : 'Oops...',
         text: "{!!session('errors')!!}",
