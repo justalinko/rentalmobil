@@ -5,9 +5,14 @@
 
     <title> {{\App\Models\Websetting::all()[0]?->title}}</title>
 
+    @else
+      <title> {{env('APP_NAME')}} </title>
     @endif
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="{{web()->meta_author}}">
+    <meta name="description" content="{{web()->meta_description}}">
+    <meta name="keywords" content="{{web()->meta_keywords}}">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 
@@ -35,7 +40,7 @@
     <!-- nav -->
     <nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-white sticky-top" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="{{url('/')}}">Car<span class="text-reor">Book</span></a>
+	      <a class="navbar-brand" href="{{url('/')}}">{!!web_name()!!}</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>

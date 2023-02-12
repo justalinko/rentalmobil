@@ -8,9 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
-    <link rel="shortcut icon" href="favicon.ico">
+    <meta name="description" content="{{web()->meta_description}}">
+    <meta name="author" content="{{web()->meta_author}}">
+    <link rel="shortcut icon" href="{{web()->icon}}">
 
     <!-- FontAwesome JS-->
     <script defer src="{{asset('assets/backend/assets/plugins/fontawesome/js/all.min.js')}}"></script>
@@ -26,7 +26,7 @@
 		    <div class="d-flex flex-column align-content-end">
 			    <div class="app-auth-body mx-auto">
 				    <div class="app-auth-branding mb-4"><a class="app-logo" href="index.html"><img class="logo-icon me-2" src="{{asset('assets/backend/assets/images/app-logo.svg')}}" alt="logo"></a></div>
-					<h2 class="auth-heading text-center mb-5">Log in to Portal</h2>
+					<h2 class="auth-heading text-center mb-5">Log in</h2>
 			        <div class="auth-form-container text-start">
 						<form class="auth-form login-form" method="post" action="/login">
 							@csrf

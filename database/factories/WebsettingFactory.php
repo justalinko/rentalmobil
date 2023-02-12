@@ -19,7 +19,7 @@ class WebsettingFactory extends Factory
         return [
             'title' => $this->faker->word(),
             'icon' => $this->faker->imageUrl(50,50),
-            'logo' => $this->faker->imageUrl(150,75),
+            'name' => $this->faker->name(),
             'meta_author' => $this->faker->name(),
             'meta_description' => $this->faker->text(),
             'meta_keywords' => $this->faker->text(),

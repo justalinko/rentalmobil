@@ -101,12 +101,18 @@ $days = $diff->days;
                                 @csrf
                             <div class="form-group">
                                 <label for="payment_method">Payment Method</label>
-                                <select name="payment_method" title="Select Payment Method" id="payment_method" class="form-control selectpicker">
-                                    <option value="mandiri" data-thumbnail="/assets/images/mandiri.png">Transfer Bank Mandiri</option>
-                                    <option value="bca" data-thumbnail="/assets/images/bca.png">Transfer Bank BCA</option>
-                                    <option value="cash">Cash when PickUp</option>
+                                <select name="payment_method" onchange="paymentMethodChange()" title="Select Payment Method" id="payment_method" class="form-control selectpicker">
+                                        <option value="">Select Payment Method</option>
+                                    @foreach(\App\Models\PaymentMethod::where('status','active')->get() as $metot)
+                                            <option value="{{$metot->name}}" data-id="metot_{{$metot->id}}" @if($metot->primary == 1) selected @endif>{{$metot->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
+                            @foreach(\App\Models\PaymentMethod::where('status','active')->get() as $metod)
+                            <div class="text-center mt-2"  style="display:none;" id="metot_{{$metod->id}}">
+                                <p>{{$metod->description}}</p>
+                            </div>
+                            @endforeach
                             <div class="d-flex justify-content-center">
                                 <button type="submit" class="btn btn-success">{{__('Confirm Payment')}}</button>
                               

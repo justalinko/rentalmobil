@@ -56,6 +56,13 @@ function web()
 {
     return \App\Models\Websetting::first();
 }
+function web_name()
+{
+    $name= web()->name;
+    $split = substr($name, 0, 3);
+    $split2 = substr($name, 3, strlen($name));
+    return $split.'<span>'.$split2.'</span>';
+}
 
 function dooration($startDate,$endDate,$startTime,$endTime)
 {

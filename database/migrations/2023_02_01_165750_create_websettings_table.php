@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('websettings', function (Blueprint $table) {
             $table->string('title');
             $table->string('icon');
-            $table->string('logo');
+            $table->string('name');
             $table->string('meta_author');
             $table->text('meta_description');
             $table->text('meta_keywords');

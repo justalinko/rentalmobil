@@ -9,9 +9,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CRUD\ArmadaController;
 use App\Http\Controllers\CRUD\OrderController;
+use App\Http\Controllers\CRUD\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ReportController;
+use App\Http\Middleware\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,9 +76,21 @@ Route::group(['prefix' => '/admin', 'middleware' => 'admin'] , function(){
     Route::get('/vehicles/{id}/delete' , [ArmadaController::class , 'destroy']);
     Route::get('/export' , [ExportController::class,'exportManager']);
 
-    Route::get('/general' , [AdminController::class , 'general']);
-    Route::post('/general' , [AdminController::class , 'generalUpdate']);
+    Route::get('/setting' , [AdminController::class , 'general']);
+    Route::post('/setting' , [AdminController::class , 'generalUpdate']);
 
-    
+    Route::get('/payments', [AdminController::class , 'payment']);
+    Route::get('/payments/{id}/delete' , [AdminController::class , 'payment_destroy']);
+    Route::get('/payments/add', [AdminController::class , 'payment_create']);
+    Route::post('/payments/add', [AdminController::class , 'payment_store']);
+
+
+    Route::get('/users' , [UserController::class , 'index']);
+    Route::get('/users/add' , [UserController::class , 'create']);
+    Route::post('/users/add' , [UserController::class , 'store']);
+    Route::get('/users/{id}/edit' , [UserController::class , 'edit']);
+    Route::post('/users/{id}/edit' , [UserController::class , 'update']);
+    Route::get('/users/{id}/delete' , [UserController::class , 'destroy']);
+     
 });
 

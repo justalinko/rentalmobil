@@ -1,6 +1,6 @@
 <footer class="app-footer">
     <div class="container text-center py-3">
-              
+              <span class="text-muted">All Rights Reserved &copy; {{date('Y')}} <a href="{{url('/')}}">{!!web_name()!!}</a></span>
     </div>
 </footer>
 <!--//app-footer-->
@@ -14,9 +14,7 @@
 <script src="{{asset('assets/backend/assets/plugins/popper.min.js')}}"></script>
 <script src="{{asset('assets/backend/assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
 
-<!-- Charts JS -->
-<script src="{{asset('assets/backend/assets/plugins/chart.js/chart.min.js')}}"></script>
-<script src="{{asset('assets/backend/assets/js/index-charts.js')}}"></script>
+
 
 
 

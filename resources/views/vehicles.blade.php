@@ -86,7 +86,7 @@
                                         style="background-image: url('{{$ar->thumbnail}}');">
                                     </div>
                                     <div class="text p-3">
-                                        <h2 class="mb-0"><a href="car-single.html">{{$ar->name}}</a></h2>
+                                        <h2 class="mb-0"><a href="/detail/{{$ar->id}}">{{$ar->name}}</a></h2>
                                         <div class="d-flex mb-3">
                                             <span class="cat">{{$ar->brand}}</span>
                                         </div>
@@ -102,8 +102,8 @@
                                         </div>
                                         <div class="d-flex">
                                             <p class="text-mute">Start From</p>
-                                            <p class="text-danger ml-auto">{{$ar->price_hour}} <span>/hour</span></p>
-                                            <p class="text-danger ml-auto">{{$ar->price_day}} <span>/day</span></p>
+                                            <p class="text-danger ml-auto">{{rupiah($ar->price_hour)}} <span>/hour</span></p>
+                                            <p class="text-danger ml-auto">{{rupiah($ar->price_day)}} <span>/day</span></p>
                                         </div>
                                         <p class="d-flex mb-0 d-block"><a href="/book/{{$ar->id}}"
                                                 class="btn btn-outline-danger py-2 mr-1">Book now</a>

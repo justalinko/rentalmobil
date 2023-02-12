@@ -85,4 +85,16 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function changeStatus(Request $request)
+    {
+        $to = $request->to;
+        $id = $request->id;
+        $order = \App\Models\Order::find($id);
+        $order->status = $to;
+        $order->note = 'Your status order updated to : ' .$to.' by admin';
+        $order->save();
+        
+        return redirect('/admin/orders')->with('success','Status order updated to : '.$to);
+    }
 }

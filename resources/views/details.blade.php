@@ -36,7 +36,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between mb-0 d-block">
                     <h3 class="font-weight-bold">{{$detail->brand}} - {{$detail->name}}</h3>
-                    <p>
+                    <p class="d-none d-md-block">
                         <a href="/book/{{$detail->id}}" class="btn btn-danger pt-2"><i class="fa fa-shopping-cart"></i> {{__('Book Now')}}</a>
                     </p>
                 </div>
@@ -45,6 +45,8 @@
                 
             </div>
         </div>
+
+        <a href="/book/{{$detail->id}}" class="btn btn-danger pt-2 d-block d-md-none m-3" style="position: fixed;bottom:0;right:0;z-index:1;"><i class="fa fa-shopping-cart"></i> {{__('Book Now')}}</a>
         {{-- spesisikasi mobil --}}
         <div class="card border-0  mb-2">
             <div class="card-body">
@@ -53,7 +55,7 @@
                 {{-- spesifikasi harga --}}
                 <div class="card">
                     <div class="card-body table-responsive">
-                        <table class="table table-bordered w-100">
+                        <table class="table table-bordered" style="min-width:350px !important;">
                             <thead>
                                 <tr class="text-center bg-light">
                                     <th>Name</th>

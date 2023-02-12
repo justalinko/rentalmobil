@@ -85,6 +85,10 @@ class DashboardController extends Controller
             {
             $data['armadas'] = Armada::paginate(8);
             return view('vehicles',$data);
+            }elseif($request->t == 'motorcycle')
+            {
+                $data['armadas'] = Armada::where('type',$request->t)->paginate(8);
+                return view('vehicles',$data);
             }
             
         }elseif($request->has('search')){

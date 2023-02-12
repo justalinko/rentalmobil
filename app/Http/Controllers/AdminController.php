@@ -28,11 +28,84 @@ class AdminController extends Controller
 
     public function general()
     {
-        return view('admin.general');
+        $data['edit'] = web();
+        return view('admin.general',$data);
+    }
+
+    public function generalUpdate(Request $request)
+    {
+        $web = web();
+        if($request->hasFile('icon'))
+        {
+            $icon = $request->file('icon');
+            $name = time().$icon->getClientOriginalName();
+            $icon->move(public_path().'/assets/images/',$name);
+            $web->icon = url('assets/images/'.$name);
+        }
+       
+        $web->title = $request->title;
+        $web->meta_author = $request->meta_author;
+        $web->meta_description = $request->meta_description;
+        $web->meta_keywords = $request->meta_keywords;
+        $web->terms = $request->terms;
+        $web->privacy_policy = $request->privacy_policy;
+        $web->about = $request->about;
+        $web->gmaps_url = $request->gmaps_url;
+        $web->name = $request->name;
+        $web->email = $request->email;
+        $web->phone = $request->phone;
+        $web->address = $request->address;
+        $web->office_phone = $request->office_phone;
+        $web->fb_url = $request->fb_url;
+        $web->ig_url = $request->ig_url;
+        $web->tiktok_url = $request->tiktok_url;        
+        $web->save();
+
+        return redirect('/admin/general')->with('success','General setting has been updated');
     }
 
     public function login()
     {
         return view('admin.login');
+    }
+
+    public function payment()
+    {
+        $data['payments'] = \App\Models\PaymentMethod::all();
+        return view('admin.payments',$data);
+    }
+
+    public function payment_create()
+    {
+        $data['isEdit'] = false;
+        $data['edit'] = null;
+        return view('admin.form.payment' , $data);
+    }
+    public function payment_store(Request $request)
+    {
+        $payment = new \App\Models\PaymentMethod;
+        $payment->name = $request->name;
+        $payment->description = $request->description;
+        $payment->status = $request->status;
+        $payment->primary = $request->primary;
+        if($request->hasFile('icon'))
+        {
+            $file = $request->file('icon');
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/assets/images/',$name);
+            $payment->icon = url('assets/images/'.$name);
+        }else{
+            $payment->icon = url('assets/images/default-payment.png');
+        }
+        $payment->save();
+
+        return redirect('/admin/payments')->with('success','Payment method has been added');
+    }
+
+    public function payment_destroy($id)
+    {
+        $payment = \App\Models\PaymentMethod::find($id);
+        $payment->delete();
+        return redirect('/admin/payments')->with('success','Payment method has been deleted');
     }
 }

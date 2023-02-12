@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\CRUD;
 
 use App\Http\Controllers\Controller;
+use App\Models\Armada;
 use Illuminate\Http\Request;
 
 class ArmadaController extends Controller
@@ -38,7 +39,48 @@ class ArmadaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $armada = new \App\Models\Armada;
+        if($request->hasFile('thumbnail'))
+        {
+            $file = $request->file('thumbnail');
+            $filename = 'thumbnail_'.time()."_".$file->getClientOriginalName();
+            $file->move(public_path('assets/images/thumb'),$filename);
+           $armada->thumbnail = url('assets/images/thumb/'.$filename);
+        }else{
+            $armada->thumbnail = url('assets/images/default.jpg');
+        }
+        if($request->hasFile('images'))
+        {
+            $images = [];
+            foreach($request->file('images') as $file)
+            {
+                $filename = 'images_'.time()."_".$file->getClientOriginalName();
+                $file->move(public_path('assets/images/preview'),$filename);
+                $images[] = url('assets/images/preview/'.$filename);
+            }
+            $images = json_encode($images);
+            $armada->images = $images;
+        }else{
+            $images = json_encode([url('assets/images/default.jpg')]);
+            $armada->images = $images;
+        }
+
+        $armada->name = $request->name;
+        $armada->brand = $request->brand;
+        $armada->type = $request->type;
+        $armada->price_hour = $request->price_hour;
+        $armada->price_day = $request->price_day;
+        $armada->price_otherlocation = $request->price_otherlocation;
+        $armada->price_withdriver = $request->price_withdriver;
+        $armada->fuel = $request->fuel;
+        $armada->luggage = $request->luggage;
+        $armada->seat = $request->seat;
+        $armada->description = $request->description;
+        $armada->stock = $request->stock;
+        $armada->save();
+
+        return redirect()->back()->with('success','berhasil ditambahkan');
     }
 
     /**
@@ -74,7 +116,42 @@ class ArmadaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $armada = \App\Models\Armada::find($id);
+        $armada = Armada::find($id);
+        if($request->hasFile('thumbnail'))
+        {
+            $file = $request->file('thumbnail');
+            $filename = 'thumbnail_'.time()."_".$file->getClientOriginalName();
+            $file->move(public_path('assets/images/thumb'),$filename);
+           $armada->thumbnail = url('assets/images/thumb/'.$filename);
+        }
+        if($request->hasFile('images'))
+        {
+            $images = [];
+            foreach($request->file('images') as $file)
+            {
+                $filename = 'images_'.time()."_".$file->getClientOriginalName();
+                $file->move(public_path('assets/images/preview'),$filename);
+                $images[] = url('assets/images/preview/'.$filename);
+            }
+            $images = json_encode($images);
+            $armada->images = $images;
+        }
+
+        $armada->name = $request->name;
+        $armada->brand = $request->brand;
+        $armada->type = $request->type;
+        $armada->price_hour = $request->price_hour;
+        $armada->price_day = $request->price_day;
+        $armada->price_otherlocation = $request->price_otherlocation;
+        $armada->price_withdriver = $request->price_withdriver;
+        $armada->fuel = $request->fuel;
+        $armada->luggage = $request->luggage;
+        $armada->seat = $request->seat;
+        $armada->description = $request->description;
+        $armada->stock = $request->stock;
+        $armada->save();
+
+        return redirect()->back()->with('success','berhasil di ubah');
         
     }
 

@@ -10,6 +10,10 @@
                 <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
                     
                     <div class="col-auto">
+                        <a class="btn app-btn-secondary" href="/admin/vehicles/add">
+                            <i class="fa fa-plus"></i>
+                           Add Vehicle
+                        </a>
                         <a class="btn app-btn-secondary" href="/admin/export?d=vehicles" target="_blank">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download me-1"
                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
