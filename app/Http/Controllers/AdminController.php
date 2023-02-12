@@ -34,7 +34,9 @@ class AdminController extends Controller
 
     public function generalUpdate(Request $request)
     {
-        $web = web();
+        $tr = \App\Models\Websetting::truncate();
+
+        $web =new \App\Models\Websetting;
         if($request->hasFile('icon'))
         {
             $icon = $request->file('icon');
