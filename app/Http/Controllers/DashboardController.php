@@ -12,7 +12,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $data['armadas'] = Armada::paginate(9);
+        $data['armadas'] = Armada::where('stock' , '!=' , 0)->paginate(9);
         return view('index',$data);
     }
 
@@ -83,19 +83,19 @@ class DashboardController extends Controller
 
             }elseif($request->t == 'all')
             {
-            $data['armadas'] = Armada::paginate(8);
+            $data['armadas'] = Armada::where('stock','!=',0)->paginate(8);
             return view('vehicles',$data);
             }elseif($request->t == 'motorcycle')
             {
-                $data['armadas'] = Armada::where('type',$request->t)->paginate(8);
+                $data['armadas'] = Armada::where('type',$request->t)->where('stock','!=',0)->paginate(8);
                 return view('vehicles',$data);
             }
             
         }elseif($request->has('search')){
-            $data['armadas'] = Armada::where('name','like','%'.$request->search.'%')->paginate(8);
+            $data['armadas'] = Armada::where('name','like','%'.$request->search.'%')->where('stock','!=',0)->paginate(8);
             return view('vehicles',$data);
         }else{
-            $data['armadas'] = Armada::paginate(8);
+            $data['armadas'] = Armada::where('stock','!=',0)->paginate(8);
             return view('vehicles',$data);
         }
        

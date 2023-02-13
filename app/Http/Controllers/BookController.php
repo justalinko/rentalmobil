@@ -76,6 +76,8 @@ class BookController extends Controller
         $order->total_price = $totalPrice;
         $order->note = 'Order '.$armada->brand.' '.$armada->type.' for '.$duration.' '.$durType;
         $order->save();
+
+        
         return redirect('/i/'.$bookong)->with('order',$order);
         
     }
@@ -120,6 +122,11 @@ class BookController extends Controller
         $order->payment_method = $request->payment_method;
         $order->note = '['.$request->code.']  Order '.$order->armada->brand.' '.$order->armada->type.' for '.$order->duration.' '.$order->duration_type.' with '.$request->payment_method.' payment method ';
         $order->save();
+        
+        $armada = Armada::find($order->armada_id);
+        $armada->stock = $armada->stock - 1;
+        $armada->save();
+
         BookConfirm::dispatch($request->code);
         return redirect('/i/'.$request->code);
     }

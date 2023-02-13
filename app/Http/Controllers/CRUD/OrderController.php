@@ -94,6 +94,13 @@ class OrderController extends Controller
         $order->status = $to;
         $order->note = 'Your status order updated to : ' .$to.' by admin';
         $order->save();
+
+        $armada = \App\Models\Armada::find($order->armada_id);
+        if($to == 'finished')
+        {
+            $armada->stock = $armada->stock + 1;
+            $armada->save();
+        }
         
         return redirect('/admin/orders')->with('success','Status order updated to : '.$to);
     }
