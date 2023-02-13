@@ -105,5 +105,6 @@
     "Please Choose Your Preferred Method Of Payment":"Please Choose Your Preferred Method Of Payment",
     "Confirm Payment":"'Confirm Payment",
     "more detail about":"more detail about",
-    "Have a Questions?":"Have a Questions?"
+    "Have a Questions?":"Have a Questions?",
+    "Dear :customer_name , Your rental order with booking ID :booking_code placed , for payment or about your status order details save your invoice link : :invoice_link":"Dear :customer_name , Your rental order with booking ID :booking_code placed , for payment or about your status order details save your invoice link : :invoice_link"
 }

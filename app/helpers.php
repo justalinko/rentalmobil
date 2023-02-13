@@ -124,3 +124,43 @@ function exportCsv($data, $filename = 'export.csv', $delimiter = ',')
     header('Content-Disposition: attachment; filename="' . $filename . '";');
     fpassthru($f);
 }
+
+function telegramMessage($msg)
+{
+
+    $client = new \GuzzleHttp\Client();
+    $response = $client->request('POST', 'https://api.telegram.org/bot'.env('TELEGRAM_BOT_TOKEN').'/sendMessage', [
+        'form_params' => [
+            'chat_id' => env('TELEGRAM_CHAT_ID'),
+            'text' => $msg
+        ]
+    ]);
+    file_put_contents(storage_path('logs/telegram.log'), $response->getBody()->getContents()."\n\n", FILE_APPEND);
+    return $response->getBody()->getContents();
+}
+
+
+function easyWa($to,$message)
+{
+    $api = 'https://api.easywa.id/v1/send-message';
+    $headers = [
+        'email' => env('EASYWA_EMAIL'),
+        'secret-key' => env('EASYWA_SECRET_KEY')
+    ];
+
+    $body = [
+        'number' => $to,
+        'message' =>$message,
+        'type' => 'sync'
+    ];
+
+    $client = new \GuzzleHttp\Client();
+    $response = $client->request('POST', $api, [
+        'headers' => $headers,
+        'form_params' => $body
+    ]);
+    $response = $response->getBody()->getContents();
+    file_put_contents(storage_path('logs/easywa.log'), $response."\n\n", FILE_APPEND);
+    return $response;
+
+}

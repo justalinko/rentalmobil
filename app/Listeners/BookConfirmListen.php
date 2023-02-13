@@ -42,7 +42,8 @@ class BookConfirmListen
             'status' => $event->status,
 
             'Link konfirmasi pembayaran sukses' => url('/confirmed/'.$event->booking_code .'?signature='. sha1($event->booking_code).'&action=confirmed'),
-            'Link pembatalan' => url('/confirmed/'.$event->booking_code .'?signature='. sha1($event->booking_code).'&action=cancelled')
+            'Link pembatalan' => url('/confirmed/'.$event->booking_code .'?signature='. sha1($event->booking_code).'&action=cancelled'),
+            'Link'
 
         ];
         $msg = "";
@@ -50,30 +51,13 @@ class BookConfirmListen
             $msg .= str_replace('_',' ' , strtoupper($key)) . " : " . str_replace('_',' ',$value) . "\n";
         }
         
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.telegram.org/bot".env('TELEGRAM_BOT_TOKEN')."/sendMessage",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "chat_id=".env('TELEGRAM_CHAT_ID')."&text=".$msg,
-            CURLOPT_HTTPHEADER => array(
-                "cache-control: no-cache",
-                "content-type: application/x-www-form-urlencoded"
-            ),
-        ));
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-        curl_close($curl);
-        if ($err) {
-            return "cURL Error #:" . $err;
-        } else {
-            file_put_contents(storage_path('logs/telegram.log'), $response."\n\n", FILE_APPEND);
-            return $response;
-        }
+        telegramMessage($msg);
+
+
+        $notifyUserMessage = __("Dear :customer_name , Your rental order with booking ID :booking_code placed , for payment or about your status order details save your invoice link : :invoice_link ", ['booking_code' => $event->booking_code , 'invoice_link' => url('/i/'.$event->booking_code) , 'customer_name' => $event->name ]);
+
+        easyWa($event->phone, $notifyUserMessage);
+        
 
     }
 }
