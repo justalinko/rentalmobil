@@ -132,7 +132,7 @@
                                         <div class="col-md-8">
                                             <label for="" class="text-dark">{{__('rental end date')}}</label>
                                             <div class="input-group mb-3 border-0 date">
-                                                <input type="text" name="end_date"  id="rental_end" class="custom-select" @if($isDirect) value="{{$direct->dropoff_date}}" @else value="{{date('d-m-Y')}}" @endif>
+                                                <input type="text" name="end_date"  id="rental_end" class="custom-select" @if($isDirect) value="{{$direct->dropoff_date}}" @else value="{{ date("d-m-Y", strtotime("+1 day")) }}" @endif>
                                                 <div class="input-group-text">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
@@ -495,11 +495,13 @@
 
             $('#rental_start').datepicker({
                 startDate: '1d',
-                format: 'd-m-yyyy'
+                format: 'd-m-yyyy',
+                autoclose:true
             });
             $('#rental_end').datepicker({
-                startDate: '1d',
-                format: 'd-m-yyyy'
+                startDate: '+1d',
+                format: 'd-m-yyyy',
+                autoclose:true
             });
 
 	        $('.tempek').timepicker({

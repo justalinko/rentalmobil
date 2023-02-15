@@ -223,7 +223,7 @@
                                 </div>
                             </div>
                             <div class="d-flex">
-                                <p class="text-danger ml-auto">{{rupiah($ar->price_hour)}} <span>/{{__('hour')}}</span></p>
+                                {{-- <p class="text-danger ml-auto">{{rupiah($ar->price_hour)}} <span>/{{__('hour')}}</span></p> --}}
                                 <p class="text-danger ml-auto">{{rupiah($ar->price_day)}} <span>/{{__('day')}}</span></p>
                             </div>
                             <p class="d-flex mb-0 d-block">

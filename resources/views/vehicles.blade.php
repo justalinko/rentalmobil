@@ -102,7 +102,7 @@
                                         </div>
                                         <div class="d-flex">
                                             <p class="text-mute">Start From</p>
-                                            <p class="text-danger ml-auto">{{rupiah($ar->price_hour)}} <span>/hour</span></p>
+                                            {{-- <p class="text-danger ml-auto">{{rupiah($ar->price_hour)}} <span>/hour</span></p> --}}
                                             <p class="text-danger ml-auto">{{rupiah($ar->price_day)}} <span>/day</span></p>
                                         </div>
                                         <p class="d-flex mb-0 d-block"><a href="/book/{{$ar->id}}"
