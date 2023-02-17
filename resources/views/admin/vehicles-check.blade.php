@@ -37,6 +37,22 @@
     </div>
 </form>
 </div>
+@if($check)
+<div class="card mt-2">
+    <div class="alert alert-info">
+        @if(count($checkData) > 0)
+        <h1>{{$checkData->armada->brand}} {{$checkData->armada->name}}</h1>
+        <h3>Stock : {{$checkData->armada->stock}}</h3>
+        <h3>Used : {{$checkData->armada->used}}</h3>
+        <h3>Available : {{$checkData->armada->stock - $checkData->armada->used}}</h3>
+        @else
+        <h1>No Vehicle Found</h1>
+        @endif
+    </div>
+</div>
+
+@endif
+
 
 <div class="card mt-5">
     <div class="card-header">
