@@ -46,6 +46,18 @@
                             </div>
                             <div class="card shadow-sm border-0 mb-3">
                                 <div class="card-body p-3">
+                                    <h5 class="font-weight-bold">{{__('CONTACT INFORMATION')}}</h5>
+                                    <div class="input-group mb-3 border-0">
+                                        <select class="custom-select border-danger" name="contact_type" id="contactInfo">
+                                            <option value="whatsapp">{{__('WhatsApp')}}</option>
+                                            <option value="telegram">{{__('Telegram')}}</option>
+                                        </select>
+                                    </div>
+                                    <input type="text" name="contact_id" class="form-control" placeholder="Your Contact ID  ( Whatsapp Number or Telegram ID)">
+                                </div>
+                            </div>
+                            <div class="card shadow-sm border-0 mb-3">
+                                <div class="card-body p-3">
                                     <h5 class="font-weight-bold">{{__('CHOOSE SERVICES TYPE')}}</h5>
                                     <div class="input-group mb-3 border-0">
                                         <select class="custom-select border-danger" name="service_type" id="serviceInput">

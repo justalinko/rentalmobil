@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Report;
 use Illuminate\Http\Request;
 use Termwind\Components\Raw;
 
@@ -81,5 +82,39 @@ class ReportController extends Controller
         dd($data);
 
     }
+      
+    public function additionalReportAll()
+    {
+        $data['reports'] = Report::orderBy('id','desc')->get();
+        return view('admin.additional-reports',$data);
+    }
 
+    public function additionalReportStore(Request $request)
+    {
+        $report = new Report();
+        $report->date = $request->date;
+        $report->type = $request->type;
+        $report->amount = $request->amount;
+        $report->description = $request->description;
+        $report->add_by = auth()->user()->name;
+        $report->save();
+        return back()->with('success','Report Added Successfully');
+    }
+    public function additionalReportEdit(Request $request)
+    {
+        $report = Report::find($request->id);
+        $report->date = $request->date;
+        $report->type = $request->type;
+        $report->amount = $request->amount;
+        $report->description = $request->description;
+        $report->add_by = auth()->user()->name;
+        $report->save();
+        return back()->with('success','Report Updated Successfully');
+    }
+    public function additionalReportDestroy($id)
+    {
+        $report = Report::find($id);
+        $report->delete();
+        return redirect()->back()->with('success' , 'Report deleted successfully');
+    }
 }

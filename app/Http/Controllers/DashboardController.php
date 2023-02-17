@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Armada;
+use App\Models\PaymentMethod;
 use App\Models\Websetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -113,5 +114,11 @@ class DashboardController extends Controller
         session()->put('applocale',$lang);
         App::setlocale($lang);
         return redirect()->back();
+    }
+
+    public function paymentMethodApi(Request $request)
+    {
+        $metot = PaymentMethod::find($request->id);
+        return response()->json($metot);
     }
 }

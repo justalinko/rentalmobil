@@ -73,7 +73,7 @@
 
             <div class="form-group row mt-3">
                 <div class="col-sm-3">
-                    <label for="priceHour">Harga/Jam</label>
+                    <label for="priceHour">+ Harga Late DropOff / Jam</label>
                     <input type="number" class="form-control" id="priceHour" name="price_hour" placeholder="Harga/Jam" value="{{$isEdit ? $edit->price_hour : ''}}">
                 </div>
                 <div class="col-sm-3">
@@ -108,14 +108,14 @@
                 <div class="input-group control-group increment" >
                     <input type="file" name="images[]" class="form-control">
                     <div class="input-group-btn"> 
-                      <button class="btn btn-success" type="button"><i class="fa fa-plus"></i></button>
+                      <button class="btn btn-success" id="addFormUpl" type="button"><i class="fa fa-plus"></i></button>
                     </div>
                   </div>
                   <div class="clone hide">
                     <div class="control-group input-group" style="margin-top:10px">
                       <input type="file" name="images[]" class="form-control">
                       <div class="input-group-btn"> 
-                        <button class="btn btn-danger" type="button"><i class="fa fa-minus"></i></button>
+                        <button class="btn btn-danger btnpler" type="button"><i class="fa fa-minus"></i></button>
                       </div>
                     </div>
                   </div>
@@ -134,11 +134,11 @@
 @section('js')
 <script type="text/javascript">
     $(document).ready(function() {
-      $(".btn-success").click(function(){ 
+      $("#addFormUpl").click(function(){ 
           var html = $(".clone").html();
           $(".increment").after(html);
       });
-      $("body").on("click",".btn-danger",function(){ 
+      $("body").on("click",".btnpler",function(){ 
           $(this).parents(".control-group").remove();
       });
 

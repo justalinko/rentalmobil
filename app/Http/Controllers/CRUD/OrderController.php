@@ -27,7 +27,9 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $data['isEdit'] = false;
+        $data['edit'] = null;
+        return view('admin.form.order',$data);
     }
 
     /**
@@ -38,7 +40,33 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $book0ng = makeBookingCode();
+        $order = new \App\Models\Order;
+        $order->armada_id = $request->vehicles;
+        $order->booking_code = $book0ng;
+        $order->customer_type = $request->customer_type;
+        $order->name = $request->name;
+        $order->email = $request->email;
+        $order->phone = $request->phone;
+        $order->contact_type = $request->contact_type;
+        $order->contact_id = ($request?->contact_id) ? $request->contact_id : $request->phone;
+        $order->service_type = $request->services_type;
+        $order->pickup_type = $request->pickup_type;
+        $order->pickup_address = $request->pickup_address;
+        $order->dropoff_type = $request->dropoff_type;
+        $order->dropoff_adress = $request->dropoff_adress;
+        $order->start_date = $request->start_date;
+        $order->end_date = $request->end_date;
+        $order->start_time = $request->start_time;
+        $order->end_time = $request->end_time;
+        $order->total_price = $request->total_price;
+        $order->note = 'Order created by admin';
+        $order->payment_method = $request->payment_method;
+        $order->status = $request->status;
+        $order->additional_input = json_encode($request->addForm,JSON_PRETTY_PRINT);
+        $order->save();
+
+        return redirect('/admin/orders')->with('success' , 'Order created successfully');
     }
 
     /**
@@ -60,7 +88,9 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['isEdit'] = true;
+        $data['edit'] = \App\Models\Order::find($id);
+        return view('admin.form.order',$data);
     }
 
     /**
@@ -72,7 +102,31 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = \App\Models\Order::find($id);
+        $order->armada_id = $request->vehicles;
+        $order->customer_type = $request->customer_type;
+        $order->name = $request->name;
+        $order->email = $request->email;
+        $order->phone = $request->phone;
+        $order->contact_type = $request->contact_type;
+        $order->contact_id = ($request?->contact_id) ? $request->contact_id : $request->phone;
+        $order->service_type = $request->services_type;
+        $order->pickup_type = $request->pickup_type;
+        $order->pickup_address = $request->pickup_address;
+        $order->dropoff_type = $request->dropoff_type;
+        $order->dropoff_adress = $request->dropoff_adress;
+        $order->start_date = $request->start_date;
+        $order->end_date = $request->end_date;
+        $order->start_time = $request->start_time;
+        $order->end_time = $request->end_time;
+        $order->total_price = $request->total_price;
+        $order->note = 'Order updated by admin';
+        $order->payment_method = $request->payment_method;
+        $order->status = $request->status;
+        $order->additional_input = json_encode($request->addForm,JSON_PRETTY_PRINT);
+        $order->save();
+
+        return redirect('/admin/orders')->with('success' , 'Order updated successfully');
     }
 
     /**
@@ -98,7 +152,11 @@ class OrderController extends Controller
         $armada = \App\Models\Armada::find($order->armada_id);
         if($to == 'finished')
         {
-            $armada->stock = $armada->stock + 1;
+            $armada->used = $armada->used - 1;
+            $armada->save();
+        }elseif($to == 'on_going')
+        {
+            $armada->used = $armada->used + 1;
             $armada->save();
         }
         

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -111,5 +112,23 @@ class AdminController extends Controller
         $payment = \App\Models\PaymentMethod::find($id);
         $payment->delete();
         return redirect('/admin/payments')->with('success','Payment method has been deleted');
+    }
+
+    public function profile()
+    {
+        $data['profile'] = auth()->user();
+        return view('admin.form.profile' , $data);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $id = auth()->user()->id;
+
+        $user = \App\Models\User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect('/admin/profile')->with('success','Profile has been updated');
     }
 }

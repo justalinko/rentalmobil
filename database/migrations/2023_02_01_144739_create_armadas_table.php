@@ -27,6 +27,7 @@ return new class extends Migration
             $table->integer('price_otherlocation');
             $table->integer('price_withdriver');
             $table->string('stock');
+            $table->string('used')->default(0);
             $table->text('description');
             $table->text('images');
             $table->string('thumbnail');

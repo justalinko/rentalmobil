@@ -20,9 +20,12 @@ class OrderFactory extends Factory
         return [
             'armada_id' => rand(1,50),
             'booking_code' => $this->faker->unique()->randomNumber(8),
+            'customer_type' => $this->faker->randomElement(['user' , 'agent']),
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'phone' => $this->faker->phoneNumber(),
+            'contact_type' => $this->faker->randomElement(['whatsapp' , 'telegram']),
+            'contact_id' => $this->faker->unique()->randomNumber(8),
             'service_type' => $this->faker->randomElement(['with_driver' , 'without_driver']),
             'pickup_type' => $this->faker->randomElement(['office' , 'other_location']),
             'pickup_address' => $this->faker->address(),
@@ -35,7 +38,8 @@ class OrderFactory extends Factory
             'total_price' => $this->faker->numberBetween(100000, 1000000),
             'note' => $this->faker->text(),
             'payment_method' => $this->faker->randomElement(['bank_transfer' , 'cash']),
-            'status' => $this->faker->randomElement(['waiting_payment' ,'waiting_confirmation' ,'waiting_pickup' , 'confirmed' , 'cancelled' , 'finished']),
+            'status' => $this->faker->randomElement(['waiting_payment' ,'waiting_confirmation' ,'waiting_pickup' , 'confirmed' , 'cancelled' , 'finished' , 'on_going']),
+            'additional_input' => '',
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\CRUD;
 
 use App\Http\Controllers\Controller;
 use App\Models\Armada;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class ArmadaController extends Controller
@@ -17,6 +18,20 @@ class ArmadaController extends Controller
     {
         $data['armadas'] = \App\Models\Armada::orderBy('id','desc')->get();
         return view('admin.vehicles',$data);
+    }
+    public function indexCheck(Request $request)
+    {
+        if($request->has('from_date') && $request->has('to_date') && $request->has('vehicles'))
+        {
+            $fromDate = $request->from_date;
+            $toDate = $request->to_date;
+            $armadaId = $request->vehicles;
+            $data['armadas'] = Order::where('armada_id',$armadaId)->whereBetween('start_date',[$fromDate,$toDate])->get();
+            return view('admin.vehicles-check',$data);
+        }else{
+        $data['armadas'] = \App\Models\Armada::all();
+        return view('admin.vehicles-check',$data);
+        }
     }
 
     /**

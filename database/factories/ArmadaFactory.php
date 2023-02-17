@@ -20,6 +20,7 @@ class ArmadaFactory extends Factory
             'name' => $this->faker->name(),
             'brand' => $this->faker->word(),
             'seat' => rand(4,9),
+            'type' => $this->faker->randomElement(['car','motorcycle']),
             'luggage' => rand(3,10),
             'transmission' => $this->faker->randomElement(['manual','automatic']),
             'fuel' => $this->faker->randomElement(['91 ron' , '92 ron','94 ron','diesel']),
@@ -28,6 +29,7 @@ class ArmadaFactory extends Factory
             'price_otherlocation' => 100000,
             'price_withdriver' => 50000,
             'stock' => rand(2,7),
+            'used' => rand(1,3),
             'description' => $this->faker->text(),
             'images' => json_encode([$this->faker->imageUrl('650','480','car'),$this->faker->imageUrl('650','480','car'),$this->faker->imageUrl('650','480','car'),$this->faker->imageUrl('650','480','car')]),
             'thumbnail' => $this->faker->imageUrl('650','480','car')

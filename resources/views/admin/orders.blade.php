@@ -22,6 +22,15 @@
                         Download Excel
                     </a>
                 </div>
+                <div class="col-auto">
+                    <a class="btn app-btn-secondary" href="/admin/orders/add">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                          </svg>
+                        New Order
+                    </a>
+                </div>
             </div>
             <!--//row-->
         </div>
@@ -32,10 +41,12 @@
 <!--//row-->
 
 
+
+
 <nav id="orders-table-tab"
     class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
 
-    @php $allStatus = ['all','waiting_payment' ,'waiting_confirmation' ,'waiting_pickup' , 'confirmed' , 'cancelled' , 'finished']; @endphp
+    @php $allStatus = ['all','waiting_payment' ,'waiting_confirmation' ,'waiting_pickup' , 'confirmed' , 'on_going','cancelled' , 'finished']; @endphp
   
         @foreach($allStatus as $sta)
     <a class="flex-sm-fill text-sm-center nav-link @if($sta == 'all') active @endif" id="{{$sta}}-tab" data-bs-toggle="tab"
@@ -65,24 +76,44 @@
                     <thead>
                         <th>Booking ID</th>
                         <th>Status</th>
+                        <th>Customer Type</th>
                         <th>User Detail</th>
+                        <th>Contact Type</th>
                         <th>Rental Item</th>
                         <th>Duration</th>
                         <th>Payment Method</th>
                         <th>Price</th>
                         <th>Created at</th>
+                        <th>Change Status</th>
                         <th>Actions</th>
                     </thead>
                     <tbody>
                         @foreach($orders as $order)
                         <tr>
-                            <td>{{$order->booking_code}}</td>
+                            <td class="text-success" onclick="window.location.href='/i/{{$order->booking_code}}'" style="cursor
+                            :pointer">{{$order->booking_code}}</td>
                             <td>{!!invoiceStatus($order->status)!!}</td>
+                            <td>
+                                @if($order->customer_type == 'user')
+                                <span class="badge bg-primary"><i class="fa fa-user"></i> User</span>
+                                @else
+                                <span class="badge bg-info"><i class="fa fa-user"></i> Agency</span>
+                                @endif
+                                
+                            </td>
                             <td>
                                 <span class="badge bg-primary"><i class="fa fa-user"></i> {{$order->name}}</span>
                                 <span class="badge bg-info"><i class="fa fa-envelope"></i> {{$order->email}}</span>
                                 <span class="badge bg-danger"><i class="fa fa-phone"></i> {{$order->phone}}</span>
                             </td>
+                            <td>
+                                @if($order->contact_type == 'whatsapp')
+                                <span class="badge bg-success"><i class="fab fa-whatsapp"></i> {{$order->contact_id}}</span>
+                                @else
+                                <span class="badge bg-info"><i class="fab fa-telegram"></i> {{$order->contact_id}}</span>
+                                @endif
+                            </td>
+                          
                             <td>
                                 <b >{{$order->armada->brand}} {{$order->armada->name}} ( {{$order->armada->transmission}} )</b>
                             </td>
@@ -95,21 +126,24 @@
                             <td>{{rupiah($order->total_price)}}</td>
                             <td>{{$order->created_at}}</td>
                             <td>
-                               
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                         Action
                                     </button>
                                     <ul class="dropdown-menu">
                                         @php
-                                            $peler =  ['waiting_payment' ,'waiting_confirmation' ,'waiting_pickup' , 'confirmed' , 'cancelled' , 'finished'];
+                                            $peler =  ['waiting_payment' ,'waiting_confirmation' ,'waiting_pickup' , 'confirmed' ,'on_going','cancelled' , 'finished'];
                                         @endphp
-                                        <li><a class="dropdown-item" href="/i/{{$order->booking_code}}">View</a></li>
+                                      
                                         @foreach ($peler as $ax)
                                             <li><a class="dropdown-item"  href="/admin/orders/{{$order->id}}/status?to={{$ax}}">{{strtoupper(str_replace('_',' ',$ax))}}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>
+                            </td>
+                            <td>
+                                <a href="/admin/orders/{{$order->id}}/edit" class="btn btn-primary btn-sm text-white"><i class="fa fa-edit"></i></a>
+                                <a href="/i/{{$order->booking_code}}" class="btn btn-danger btn-sm text-white"><i class="fa fa-eye"></i></a>                               
                             </td>
                         </tr>
                         @endforeach
@@ -132,3 +166,14 @@
 <!--//tab-content-->
 
 @endsection
+
+
+@if(Request::get('add') == 'true')
+@section('js')
+<script>
+    $(document).ready(function(){
+        $('#add').modal('show');
+    });
+</script>
+@endsection
+@endif

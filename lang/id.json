@@ -108,5 +108,8 @@
     "Confirm Payment":"Konfirmasi Pembayaran",
     "more detail about":"Lebih banyak tentang",
     "Have a Questions?":"Punya pertanyaan?",
-    "Dear :customer_name , Your rental order with booking ID :booking_code placed , for payment or about your status order details save your invoice link : :invoice_link":"Yth :customer_name , Pesanan rental Anda dengan Booking ID :booking_code di proses , untuk pembayaran atau tentang detail status pesanan Anda simpan tautan faktur Anda : :invoice_link"
+    "Dear :customer_name , Your rental order with booking ID :booking_code placed , for payment or about your status order details save your invoice link : :invoice_link":"Yth :customer_name , Pesanan rental Anda dengan Booking ID :booking_code di proses , untuk pembayaran atau tentang detail status pesanan Anda simpan tautan faktur Anda : :invoice_link",
+    "pickup in other location must be approved by the admin first, the admin will confirm via your contact":"penjemputan di daerah lain harus disetujui oleh admin terlebih dahulu, admin akan mengkonfirmasi melalui kontak anda",
+    "you are currently on rent":"anda sedang dalam proses sewa",
+    "CONTACT INFORMATION" : "INFORMASI KONTAK"
 }

@@ -46,7 +46,11 @@ function invoiceStatus($status)
     }elseif($status == 'finished')
     {
         $x = '<span class="badge bg-success badge-success"><i class="fa fa-check"></i> Finished</span>';
-    }else{
+    }elseif($status == 'on_going')
+    {
+        $x = '<span class="badge bg-success badge-success"><i class="fa fa-spin fa-spinner"></i> On Going</span>';
+    }else
+    {
         $x = '<span class="badge bg-danger badge-danger"><i class="fa fa-times"></i> Unknown</span>';
     }
     return $x;

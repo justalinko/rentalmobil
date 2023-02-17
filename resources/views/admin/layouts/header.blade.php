@@ -50,7 +50,7 @@
                                     role="button" aria-expanded="false"><img src="https://ui-avatars.com/api/?name={{Auth::user()->name}}"
                                         alt="user profile" class="rounded-circle img-fluid"></a>
                                 <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#account">Account</a></li>
+                                    <li><a class="dropdown-item" href="/admin/profile">Account</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>

@@ -91,23 +91,43 @@
                         <thead>
                             <th>Booking ID</th>
                             <th>Status</th>
+                            <th>Customer Type</th>
                             <th>User Detail</th>
+                            <th>Contact Type</th>
                             <th>Rental Item</th>
                             <th>Duration</th>
                             <th>Payment Method</th>
                             <th>Price</th>
                             <th>Created at</th>
+                           
                         </thead>
                         <tbody>
                             @foreach($orders as $order)
                             <tr>
-                                <td>{{$order->booking_code}}</td>
+                                <td class="text-success" onclick="window.location.href='/i/{{$order->booking_code}}'" style="cursor
+                                :pointer">{{$order->booking_code}}</td>
                                 <td>{!!invoiceStatus($order->status)!!}</td>
+                                <td>
+                                    @if($order->customer_type == 'user')
+                                    <span class="badge bg-primary"><i class="fa fa-user"></i> User</span>
+                                    @else
+                                    <span class="badge bg-info"><i class="fa fa-user"></i> Agency</span>
+                                    @endif
+                                    
+                                </td>
                                 <td>
                                     <span class="badge bg-primary"><i class="fa fa-user"></i> {{$order->name}}</span>
                                     <span class="badge bg-info"><i class="fa fa-envelope"></i> {{$order->email}}</span>
                                     <span class="badge bg-danger"><i class="fa fa-phone"></i> {{$order->phone}}</span>
                                 </td>
+                                <td>
+                                    @if($order->contact_type == 'whatsapp')
+                                    <span class="badge bg-success"><i class="fab fa-whatsapp"></i> {{$order->contact_id}}</span>
+                                    @else
+                                    <span class="badge bg-info"><i class="fab fa-telegram"></i> {{$order->contact_id}}</span>
+                                    @endif
+                                </td>
+                              
                                 <td>
                                     <b >{{$order->armada->brand}} {{$order->armada->name}} ( {{$order->armada->transmission}} )</b>
                                 </td>
@@ -119,7 +139,7 @@
                                 <td>{{$order->payment_method}}</td>
                                 <td>{{rupiah($order->total_price)}}</td>
                                 <td>{{$order->created_at}}</td>
-                              
+                               
                             </tr>
                             @endforeach
                         </tbody>

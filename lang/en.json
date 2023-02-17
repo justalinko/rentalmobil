@@ -106,5 +106,8 @@
     "Confirm Payment":"'Confirm Payment",
     "more detail about":"more detail about",
     "Have a Questions?":"Have a Questions?",
-    "Dear :customer_name , Your rental order with booking ID :booking_code placed , for payment or about your status order details save your invoice link : :invoice_link":"Dear :customer_name , Your rental order with booking ID :booking_code placed , for payment or about your status order details save your invoice link : :invoice_link"
+    "Dear :customer_name , Your rental order with booking ID :booking_code placed , for payment or about your status order details save your invoice link : :invoice_link":"Dear :customer_name , Your rental order with booking ID :booking_code placed , for payment or about your status order details save your invoice link : :invoice_link",
+    "pickup in other location must be approved by the admin first, the admin will confirm via your contact":"pickup in other location must be approved by the admin first, the admin will confirm via your contact",
+    "you are currently on rent":"you are currently on rent",
+    "CONTACT INFORMATION" : "CONTACT INFORMATION"
 }

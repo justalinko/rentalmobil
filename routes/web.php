@@ -53,14 +53,23 @@ Route::get('/logout' , [AuthController::class , 'logout'])->name('logout');
 Route::group(['prefix' => '/admin', 'middleware' => 'admin'] , function(){
 
     Route::get('/' , [AdminController::class , 'index']);
+    Route::get('/profile' , [AdminController::class , 'profile']);
+    Route::post('/profile',[AdminController::class , 'updateProfile']);
 
     Route::get('/orders' , [OrderController::class , 'index']);
+    Route::get('/orders/add',[OrderController::class , 'create']);
+    Route::post('/orders/add' , [OrderController::class , 'store']);
     Route::get('/orders/{id}/edit' , [OrderController::class , 'edit']);
-    Route::post('/orders/{id}' , [OrderController::class , 'update']);
+    Route::post('/orders/{id}/edit' , [OrderController::class , 'update']);
     Route::get('/orders/{id}/delete' , [OrderController::class , 'destroy']);
     Route::get('/orders/{id}/status' , [OrderController::class , 'changeStatus']);
 
     Route::get('/reports', [ReportController::class , 'index']);
+    Route::get('/add-reports', [ReportController::class , 'additionalReportAll']);
+    Route::post('/reports/add' , [ReportController::class , 'additionalReportStore']);
+    Route::post('/reports/{id}/edit' , [ReportController::class , 'additionalReportEdit']);
+    Route::get('/reports/{id}/delete' , [ReportController::class , 'additionalReportDestroy']);
+
     Route::get('/reports/filter' , [ReportController::class,'filterManager']);
     Route::get('/reports/monthly/{month}', [ReportController::class , 'monthly']);
     Route::get('/reports/yearly/{year}', [ReportController::class , 'yearly']);
@@ -74,6 +83,8 @@ Route::group(['prefix' => '/admin', 'middleware' => 'admin'] , function(){
     Route::get('/vehicles/{id}/edit' , [ArmadaController::class , 'edit']);
     Route::post('/vehicles/{id}/edit' , [ArmadaController::class , 'update']);
     Route::get('/vehicles/{id}/delete' , [ArmadaController::class , 'destroy']);
+    Route::get('/vehicles/check' , [ArmadaController::class , 'indexCheck']);
+
     Route::get('/export' , [ExportController::class,'exportManager']);
 
     Route::get('/setting' , [AdminController::class , 'general']);

@@ -15,105 +15,62 @@ if($diff->days == 0){
 $days = $diff->days;
 @endphp
 
-
-
-<section class="ftco-section bg-light pt-5 p-4">
-    <div class="container bg-white rounded p-3 border">
-        <header>
-            <div class="row  pt-3">
-                <div class="col-sm-6 text-center text-sm-left mb-3 mb-sm-0">
-                    <h2 class="font-weight-bold">Rental <span class="text-danger">Mobil</span></h2>
-                    <label>Booking ID <span class="font-weight-bold">#{{$order->booking_code}}</span></label>
-                  <h4 class="font-weight-bold">STATUS : {!!invoiceStatus($order->status)!!} <span class="btn btn-info rounded-circle" data-toggle="modal" data-target="#infoStatus"><i class="fa fa-question"></i> </span></h4>
-                </div>
-                @if($order->status == 'waiting_payment')
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-header text-center pb-0">
-                            <p>{{__('Please Choose Your Preferred Method Of Payment')}}</p>
-                        </div>
-                        <div class="card-body">
-                            <h6 class="text-center font-weight-bold">Manual Payment</h6>
-                            <form method="POST" action="/confirm/{{$order->booking_code}}">
-                                @csrf
-                            <div class="form-group">
-                                <label for="payment_method">Payment Method</label>
-                                <select name="payment_method" onchange="paymentMethodChange()" title="Select Payment Method" id="payment_method" class="form-control selectpicker">
-                                        <option value="">Select Payment Method</option>
-                                    @foreach(\App\Models\PaymentMethod::where('status','active')->get() as $metot)
-                                            <option value="{{$metot->name}}" data-id="metot_{{$metot->id}}" @if($metot->primary == 1) selected @endif>{{$metot->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="text-center mt-2" id="metotArea">
-
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <button type="submit" class="btn btn-success">{{__('Confirm Payment')}}</button>
-                              
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                @else
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-header text-center pb-0">
-                            <p>Payment Method</p>
-                        </div>
-                        <div class="card-body text-center">
-                            @php $pm = \App\Models\PaymentMethod::where('name',$order->payment_method)->first(); @endphp
-                            <img src="{{$pm->icon}}" class="img-fluid" style="max-width: 130px;height:auto;">
-                            <h6 class="text-center font-weight-bold">{{$order->payment_method}}</h6>
-                                <p>
-                                    {{$pm->description}}
-                                </p>
-                        </div>
-
-                        <div class="card-footer">
-                            <p class="text-center mt-1">ORDER NOTE</p>
-                            <p class="text-center mt-1">{{$order->note}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                @endif
-            </div>
-            <hr>
-        </header>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
         
         <main>
-            <div class="row">
-                <div class="col-sm-7">
+            <center>
+                <h1>{{web()->name}}</h1>
+                <p>{{web()->email}} | {{web()->address}} | {{url('/')}}</p>
+            </center>
+            <table border="1" style="border-collapse:collapse;width:100%;">
+                
+                <tr>
+                    <td>
+                        <b>{{web()->name}} </b>
+                    </td>
+                    <td>
                     <strong>Date:</strong> {{$order->created_at}}
-                </div>
-                <div class="col-sm-5 text-sm-right"> 
+                    </td>
+                    <td> 
                     <strong>Booking ID :</strong> {{$order->booking_code}}
-                </div>
-            </div>
+                    </td>
+                </tr>
+            </table>
+            
             <hr>
-            <div class="row">
-                <div class="col-sm-6 text-sm-right order-sm-1"> <strong>Pay To:</strong>
+            <table border="1" style="border-collapse: collapse;">
+                <tr>
+                    <td> <strong>Pay To:</strong></td>
+                    <td><strong>Invoiced To:</strong></td>
+                </tr>
+                <tr>
+                    <td>
                   <address>
                  {{web()->title}}<br>
                   {{web()->address}}<br>
                   {{web()->phone}}<br>
                   {{web()->email}}
                   </address>
-                </div>
-                <div class="col-sm-6 order-sm-0"> <strong>Invoiced To:</strong>
+                    </td>
+                    <td>
+          
                   <address>
                  {{$order->name}}<br>
                   {{$order->email}} ( {{$order->phone}})
                   </address>
-                </div>
-            </div>
+                    </td>
+                </tr>
+            </table>
+            
             <div class="card text-center">
                 <div class="card-body p-0">
                   <div class="table-responsive table-bordered">
-                    <table class="table mb-0">
-                    <thead class="card-header">
+                    <table class="table mb-0" border=1 style="border-collapse: collapse;margin-top:30px;width:100%">
+                    <thead class="card-header" style="background-color:red;color:white;padding:6px;">
                       <tr>
                         <td class="col-3"><strong>Item Product</strong></td>
                         <td class="col-1 text-center"><strong>Service</strong></td>
@@ -156,7 +113,7 @@ $days = $diff->days;
                                 </small>
                             </td>
                             <td class="col-2 text-center">
-
+        
                                 @if($order->pickup_type == 'other_location' )
                                 {{rupiah($order->armada->price_otherlocation)}}
                                 @else
@@ -192,7 +149,7 @@ $days = $diff->days;
                           
                                 <br>
                                 {{$days}} {{$type}}(s)
-
+        
                             </td>
                             <td class="col-2 text-center">
                                 @if($tipe == 'day')
@@ -231,12 +188,10 @@ $days = $diff->days;
                 </div>
             </div>
             <footer class="text-center mt-4">
+                <b>Payment Method : {{$order->payment_method}} - {{\App\Models\PaymentMethod::where('name' , $order->payment_method)->first()->description}}</b>
                 <p class="text-1"><strong>NOTE :</strong> {{__('pickup in other location must be approved by the admin first, the admin will confirm via your contact')}}</p>
-                <div class="btn-group btn-group-sm d-print-none">
-                    <a href="javascript:window.print()" class="btn btn-info shadow-none mr-2"><i class="fa fa-print"></i> Print</a> 
-                    <a href="/i/{{$order->booking_code}}?pdf=true" class="btn btn-success shadow-none"><i class="fa fa-download"></i> Download</a>
-                </div>
+              
             </footer>
         </main>
-    </div>
-</section>
+    </body>
+</html>

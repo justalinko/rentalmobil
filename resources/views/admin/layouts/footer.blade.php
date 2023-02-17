@@ -15,7 +15,8 @@
 <script src="{{asset('assets/backend/assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
 
 
-
+<script src="{{asset('assets/js/bootstrap-datepicker.js')}}"></script>
+<script src="{{asset('assets/js/jquery.timepicker.min.js')}}"></script>
 
 
 <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
