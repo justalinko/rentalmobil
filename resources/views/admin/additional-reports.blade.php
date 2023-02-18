@@ -52,7 +52,7 @@
             <div class="form-group row">
                 <label for="date" class="col-3">Date</label>
                 <div class="col-9">
-                    <input type="date" class="form-control" id="date" name="date">
+                    <input type="text" class="form-control" id="date" name="date">
                 </div>
             </div>
             <div class="form-group row mt-2">
@@ -187,4 +187,21 @@
     </div>
 </div>
 
+@endsection
+
+@section('js')
+<script 
+<script>
+    $(document).ready(function()
+    {
+        $('#date').datepicker({
+            format:'d-mm-yyyy',
+            autoclose:true
+        });
+    });
+</script>
+@endsection
+@section('css')
+<link rel="stylesheet" href="{{asset('assets/css/bootstrap-datepicker.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/jquery.timepicker.css')}}">
 @endsection
