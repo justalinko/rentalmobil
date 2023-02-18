@@ -38,17 +38,77 @@
 </form>
 </div>
 @if($check)
-<div class="card mt-2">
-    <div class="alert alert-info">
+<div class="mt-2 row mx-auto">
+  
         @if(count($checkData) > 0)
-        <h1>{{$checkData->armada->brand}} {{$checkData->armada->name}}</h1>
-        <h3>Stock : {{$checkData->armada->stock}}</h3>
-        <h3>Used : {{$checkData->armada->used}}</h3>
-        <h3>Available : {{$checkData->armada->stock - $checkData->armada->used}}</h3>
+            @foreach ($checkData as $dt)
+            <div class="col-6 mt-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>{{$dt->armada->name}}</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <th>Date</th>
+                                <th>Stock</th>
+                                <th>Used</th>
+                                <th>Available</th>
+                            </thead>
+                            <tbody>
+                              
+                                <tr>
+                                    <td>{{Request::get('from_date')}} / {{Request::get('to_date')}}</td>
+                                    <td>{{$dt->armada->stock}}</td>
+                                    <td>{{$dt->armada->used}}</td>
+                                    <td>{{$dt->armada->stock - $dt->armada->used}}</td>
+                                </tr>
+                       
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            @endforeach
         @else
-        <h1>No Vehicle Found</h1>
+                @if($armadax == 'all')
+                <div class="alert alert-success mx-auto col-8">
+                    <h1>All Vehicles Available <i class="fa fa-check text-success"></i></h1>
+                    <p>All Vehicles are available at {{Request::get('from_date')}} until {{Request::get('to_date')}}</p>
+                </div>
+                @else
+                    @foreach($armadax as $arem)
+                    <div class="col-6 mt-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>{{$arem->name}}</h3>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <th>Date</th>
+                                        <th>Stock</th>
+                                        <th>Used</th>
+                                        <th>Available</th>
+                                    </thead>
+                                    <tbody>
+                                      
+                                        <tr>
+                                            <td>{{Request::get('from_date')}} / {{Request::get('to_date')}}</td>
+                                            <td>{{$arem->stock}}</td>
+                                            <td>{{$arem->used}}</td>
+                                            <td>{{$arem->stock - $arem->used}}</td>
+                                        </tr>
+                               
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                @endif
         @endif
-    </div>
+
 </div>
 
 @endif

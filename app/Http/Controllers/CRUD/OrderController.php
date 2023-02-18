@@ -86,8 +86,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
+        $id = $request->id;
         $data['isEdit'] = true;
         $data['edit'] = \App\Models\Order::find($id);
         return view('admin.form.order',$data);

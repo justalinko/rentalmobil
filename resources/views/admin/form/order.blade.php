@@ -18,7 +18,8 @@
                 <label for="vehicles" class="col-2">Vehicles</label>
                 <div class="col-10">
                 <select name="vehicles" id="vehicles" class="form-control">
-                    @foreach (\App\Models\Armada::where('stock','!=','0')->get() as $vehicle)
+                    @foreach (\App\Models\Armada::all() as $vehicle)
+                    @if($vehicle->stock == $vehicle->used) @continue @endif
                     <option value="{{$vehicle->id}}" data-price="{{$vehicle->price_day}}" @if($isEdit) @if($edit->armada_id == $vehicle->id) selected @endif @endif>{{$vehicle->type}} - {{$vehicle->brand}} {{$vehicle->name}} ( {{rupiah($vehicle->price_day)}} / day)</option>
                     @endforeach
                 </select>
@@ -156,7 +157,8 @@
             @if($isEdit)
 
             <div class="wrapper-clone">
-            @foreach (json_decode($edit->additional_input) as $key => $item)
+            @if($edit->additional_input !== null && is_array(json_decode($edit->additional_input,true)))
+            @foreach (@json_decode($edit->additional_input) as $key => $item)
             <div class="form-group row mt-2">
                 <!-- deposit -->
                 <label for="addForm[{{$key}}]" class="col-2">{{ucfirst($key)}} </label>
@@ -176,6 +178,16 @@
                 </div>
             </div>
             @endforeach
+            @else
+            <div class="form-group row mt-2">
+                <label for="addBtn" class="col-2">Add Form </label>
+                <div class="col-10">
+                    <button class="btn btn-success w-100 text-white" id="addFormClick" type="button">
+                        <i class="fa fa-plus"></i> Add Input Form
+                    </button>
+                </div>
+            </div>
+            @endif
             </div>
 
             @endif
@@ -211,7 +223,7 @@
             </div>
 
             <div class="form-group mt-4">
-                <button type="submit" class="btn btn-primary text-white w-100"><i class="fa fa-share"></i> Place Order</button>
+                <button type="submit" class="btn btn-primary text-white w-100"><i class="fa fa-share"></i> Save Order</button>
             </div>
         </form>
     </div>

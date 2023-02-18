@@ -27,8 +27,13 @@ class ArmadaController extends Controller
             $toDate = $request->to_date;
             $armadaId = $request->vehicles;
             $data['check'] = true;
-            $data['checkData'] = Order::where('armada_id',$armadaId)->whereBetween('start_date',[$fromDate,$toDate])->get();
-           
+            if($armadaId == 'all'){
+                $data['checkData'] = Order::whereBetween('start_date',[$fromDate,$toDate])->get();
+                $data['armadax'] = 'all';
+            }else{
+                $data['checkData'] = Order::where('armada_id',$armadaId)->whereBetween('start_date',[$fromDate,$toDate])->get();
+                $data['armadax'] = Armada::find($armadaId);
+            }
         }else{
         $data['check'] = false;
         $data['checkData'] = [];

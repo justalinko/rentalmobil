@@ -13,4 +13,5 @@ class Order extends Model
     {
         return $this->belongsTo(Armada::class,'armada_id','id');
     }
+    
 }

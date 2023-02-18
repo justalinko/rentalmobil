@@ -67,6 +67,7 @@ class BookController extends Controller
         $order->service_type = $request->service_type;
         $order->contact_type = $request->contact_type;
         $order->contact_id = $request->contact_id;
+        $order->customer_type = 'user';
         $order->pickup_type = $pickupType;
         $order->dropoff_type =$dropoffType;
         $order->pickup_address = $request->pickup_address;
@@ -197,7 +198,7 @@ class BookController extends Controller
         $order->save();
         
         $armada = Armada::find($order->armada_id);
-        $armada->stock = $armada->stock - 1;
+        $armada->used = $armada->used + 1;
         $armada->save();
 
         BookConfirm::dispatch($request->code);

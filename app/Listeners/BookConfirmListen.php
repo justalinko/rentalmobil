@@ -56,7 +56,7 @@ class BookConfirmListen
 
         $notifyUserMessage = __("Dear :customer_name , Your rental order with booking ID :booking_code placed , for payment or about your status order details save your invoice link : :invoice_link ", ['booking_code' => $event->booking_code , 'invoice_link' => url('/i/'.$event->booking_code) , 'customer_name' => $event->name ]);
 
-        easyWa($event->phone, $notifyUserMessage);
+     //   easyWa($event->phone, $notifyUserMessage);
         
 
     }
