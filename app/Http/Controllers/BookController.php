@@ -78,6 +78,7 @@ class BookController extends Controller
         $order->end_time = $request->end_time;
         $order->total_price = $totalPrice;
         $order->note = 'Order '.$armada->brand.' '.$armada->type.' for '.$duration.' '.$durType;
+        $order->created_by = 'website';
         
         $order->save();
 

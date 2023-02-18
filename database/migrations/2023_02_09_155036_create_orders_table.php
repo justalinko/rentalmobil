@@ -37,6 +37,7 @@ return new class extends Migration
             $table->string('payment_method')->nullable();
             $table->enum('status' , ['waiting_payment' ,'waiting_confirmation' ,'waiting_pickup' , 'confirmed' ,'on_going' ,'cancelled' , 'finished'])->default('waiting_payment');
             $table->text('additional_input')->nullable();
+            $table->string('created_by')->default('website');
             $table->timestamps();
         });
     }

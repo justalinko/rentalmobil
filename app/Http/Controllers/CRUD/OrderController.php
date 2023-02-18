@@ -125,6 +125,7 @@ class OrderController extends Controller
         $order->payment_method = $request->payment_method;
         $order->status = $request->status;
         $order->additional_input = json_encode($request->addForm,JSON_PRETTY_PRINT);
+        $order->created_by = auth()->user()->name;
         $order->save();
 
         return redirect('/admin/orders')->with('success' , 'Order updated successfully');

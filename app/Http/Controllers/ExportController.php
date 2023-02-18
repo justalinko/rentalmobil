@@ -14,7 +14,7 @@ class ExportController extends Controller
     public function order()
     {
         $filename = 'Order_'.date('d-m-Y').'.xlsx';
-        $header = ['Booking Code (ID)' , 'Status' , 'Customer' , 'Rental Item' ,'Start Date','End Date', 'Duration','Payment Method', 'Total Price' , 'Created Date'];
+        $header = ['Booking Code (ID)' , 'Status' , 'Customer' , 'Rental Item' ,'Start Date','End Date', 'Duration','Payment Method', 'Total Price' , 'Created Date', 'Created By' , 'Customer Type', 'Contact'];
         $database = Order::all();
         
         $spreadsheet = new Spreadsheet();
@@ -46,6 +46,9 @@ class ExportController extends Controller
             $index->setCellValue('H'.$i,$dt->payment_method);
             $index->setCellValue('I'.$i,$dt->total_price);
             $index->setCellValue('J'.$i,$dt->created_at);
+            $index->setCellValue('K'.$i,$dt->created_by);
+            $index->setCellValue('L'.$i,$dt->customer_type);
+            $index->setCellValue('M'.$i,$dt->contact_type . ' '.$dt->contact_id);
 
         }
 
@@ -73,7 +76,7 @@ class ExportController extends Controller
     public function vehicles()
     {
         $filename = 'Vehicles_'.date('d-m-Y').'.xlsx';
-        $header = ['Tipe' , 'BrandName' , 'Seat' , 'Luggage' , 'Transmission','Fuel Type', 'Price/Hour' , 'Price/Day' , 'PriceOtherLocation(Pickup&Dropoff)' , 'Stock'];
+        $header = ['Tipe' , 'BrandName' , 'Seat' , 'Luggage' , 'Transmission','Fuel Type', 'Price/Hour' , 'Price/Day' , 'PriceOtherLocation(Pickup&Dropoff)' , 'Stock', 'Used' , 'Available'];
         $database = Armada::all();
         
         $spreadsheet = new Spreadsheet();
@@ -105,6 +108,8 @@ class ExportController extends Controller
             $index->setCellValue('H'.$i,$dt->price_day);
             $index->setCellValue('I'.$i,$dt->price_otherlocation);
             $index->setCellValue('J'.$i,$dt->stock);
+            $index->setCellValue('K'.$i,$dt->used);
+            $index->setCellValue('L'.$i,$dt->stock - $dt->used);
 
         }
 

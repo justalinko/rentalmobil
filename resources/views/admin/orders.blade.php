@@ -84,6 +84,7 @@
                         <th>Payment Method</th>
                         <th>Price</th>
                         <th>Created at</th>
+                        <th>Created By</th>
                         <th>Change Status</th>
                         <th>Actions</th>
                     </thead>
@@ -125,6 +126,7 @@
                             <td>{{$order->payment_method}}</td>
                             <td>{{rupiah($order->total_price)}}</td>
                             <td>{{$order->created_at}}</td>
+                            <td>{{$order->created_by}}</td>
                             <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
