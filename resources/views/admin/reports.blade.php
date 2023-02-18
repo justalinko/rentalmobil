@@ -99,6 +99,7 @@
                             <th>Payment Method</th>
                             <th>Price</th>
                             <th>Created at</th>
+                            <th>Created By</th>
                            
                         </thead>
                         <tbody>
@@ -139,6 +140,7 @@
                                 <td>{{$order->payment_method}}</td>
                                 <td>{{rupiah($order->total_price)}}</td>
                                 <td>{{$order->created_at}}</td>
+                                <td>{{$order->created_by}}</td>
                                
                             </tr>
                             @endforeach

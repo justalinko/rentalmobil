@@ -128,7 +128,7 @@ class OrderController extends Controller
         $order->created_by = auth()->user()->name;
         $order->save();
 
-        return redirect('/admin/orders')->with('success' , 'Order updated successfully');
+        return redirect('/admin/orders')->with('success' , 'Order updated successfully')->with('order_success' , 'Order success with booking code : '.$order->booking_code.' <a href="/i/'.$order->booking_code.'" target="_blank">Click here to see invoice</a>');
     }
 
     /**

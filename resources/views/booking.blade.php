@@ -38,7 +38,6 @@
                                     <input type="text" name="name" class="form-control mb-3" placeholder="Your Name" id="name" required>
                                     <input type="email" class="form-control mb-3" placeholder="your@email"
                                         name="email" id="email" required>
-                                    <p class="text-danger font-italic mb-0 font-sm">{{__('* Masukkan nomor whatsapp')}}</p>
                                     <input type="text" class="form-control mb-3"
                                         placeholder="Your Phone Number" name="phone" id="phone"
                                         required>

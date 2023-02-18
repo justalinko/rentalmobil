@@ -40,6 +40,13 @@
 </div>
 <!--//row-->
 
+@if(session('order_success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Success!</strong> {{session('order_success')}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
 
 
 
