@@ -99,7 +99,8 @@
             <div class="form-group row mt-2">
                 <label for="description" class="col-sm-3 col-form-label">Description</label>
                 <div class="col-sm-9">
-                    <textarea name="description" id="desc" class="form-control" style="height:150px">{{$isEdit ? $edit->description : ''}}</textarea>
+
+                    <textarea name="description" id="desc" class="form-control summernote" style="height:150px">{{$isEdit ? $edit->description : ''}}</textarea>
                 </div>
             </div>
 

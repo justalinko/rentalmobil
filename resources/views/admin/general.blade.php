@@ -57,19 +57,19 @@
             <div class="form-group row mt-2">
                 <label for="terms" class="col-sm-2 col-form-label">Terms</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" style="height:200px" placeholder="Terms" id="terms" name="terms" placeholder="Terms">{{$edit->terms}}</textarea>
+                    <textarea class="form-control summernote" style="height:200px" placeholder="Terms" id="terms" name="terms" placeholder="Terms">{{$edit->terms}}</textarea>
                 </div>
             </div>
             <div class="form-group row mt-2">
                 <label for="privacy_policy" class="col-sm-2 col-form-label">Privacy Policy</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" style="height:200px" style="height:200px placeholder="Privacy Policy" id="privacy_policy" name="privacy_policy" placeholder="Privacy Policy">{{$edit->privacy_policy}}</textarea>
+                    <textarea class="form-control summernote" style="height:200px" style="height:200px placeholder="Privacy Policy" id="privacy_policy" name="privacy_policy" placeholder="Privacy Policy">{{$edit->privacy_policy}}</textarea>
                 </div>
             </div>
             <div class="form-group row mt-2">
                 <label for="about" class="col-sm-2 col-form-label">About</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" style="height:200px" placeholder="About" id="about" name="about" placeholder="About">{{$edit->about}}</textarea>
+                    <textarea class="form-control summernote" style="height:200px" placeholder="About" id="about" name="about" placeholder="About">{{$edit->about}}</textarea>
                 </div>
             </div>
             <div class="form-group row mt-2">

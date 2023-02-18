@@ -17,6 +17,8 @@
 	<script defer src="{{asset('assets/backend/assets/plugins/fontawesome/js/all.min.js')}}"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap5.min.css">
 	<!-- App CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 	<link id="theme-style" rel="stylesheet" href="{{asset('assets/backend/assets/css/portal.css')}}">
 
     @yield('css')

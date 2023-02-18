@@ -161,7 +161,7 @@
             <div class="form-group row mt-2">
                 <label for="description" class="col-3">Description</label>
                 <div class="col-9">
-                    <textarea name="description" id="description" style="height:100px;" class="form-control">{{$u->description}}</textarea>
+                    <textarea name="description" id="description" style="height:100px;" class="form-control summernote">{{$u->description}}</textarea>
                 </div>
             </div>
 
