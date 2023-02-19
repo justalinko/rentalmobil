@@ -196,12 +196,13 @@
     <section class="ftco-section bg-light pt-5">
         <div class="container">
             <div class="d-flex justify-content-between mb-1">
-                <h5 class="font-weight-bold"><i class="flaticon-car text-danger"></i> {{__('Best Selling Rental Car')}}</h5>
-                <a href="{{url('/vehicles')}}" class="text-danger">{{__('view car')}} <i class="fa fa-arrow-right"></i></a>
+                <h5 class="font-weight-bold"><i class="flaticon-car text-danger"></i> {{__('New vehicles ready for rent')}}</h5>
+                <a href="{{url('/vehicles')}}" class="text-danger">{{__('view all vehicles')}} <i class="fa fa-arrow-right"></i></a>
             </div>
             <div class="row">
 
                 @foreach($armadas as $ar)
+                @if($ar->stock == $ar->used) @continue @endif
                 <div class="col-md-4">
                     <div class="car-wrap rounded ftco-animate">
                         <div class="img rounded d-flex align-items-end"

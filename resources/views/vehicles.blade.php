@@ -80,6 +80,7 @@
                         <!-- list mobil -->
                         <div class="row">
                             @foreach($armadas as $ar)
+                            @if($ar->stock == $ar->used) @continue @endif
                             <div class="col-md-6 mt-3">
                                 <div class="car-wrap rounded ftco-animate">
                                     <div class="img rounded d-flex align-items-end"

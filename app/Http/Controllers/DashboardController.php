@@ -13,7 +13,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $data['armadas'] = Armada::where('stock' , '!=' , 0)->paginate(9);
+        $data['armadas'] = Armada::orderBy('id' , 'desc')->paginate(9);
         return view('index',$data);
     }
 
