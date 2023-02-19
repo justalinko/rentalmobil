@@ -27,7 +27,7 @@ return new class extends Migration
             $table->enum('pickup_type' , ['office' , 'other_location'])->default('office');
             $table->text('pickup_address')->nullable();
             $table->enum('dropoff_type' , ['office' , 'other_location'])->default('office');
-            $table->text('dropoff_adress')->nullable();
+            $table->text('dropoff_address')->nullable();
             $table->string('start_date');
             $table->string('end_date');
             $table->string('start_time');

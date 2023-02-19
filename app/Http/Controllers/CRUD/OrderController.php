@@ -56,7 +56,7 @@ class OrderController extends Controller
         $order->pickup_type = $request->pickup_type;
         $order->pickup_address = $request->pickup_address;
         $order->dropoff_type = $request->dropoff_type;
-        $order->dropoff_adress = $request->dropoff_adress;
+        $order->dropoff_address = $request->dropoff_address;
         $order->start_date = $request->start_date;
         $order->end_date = $request->end_date;
         $order->start_time = $request->start_time;
@@ -120,7 +120,7 @@ class OrderController extends Controller
         $order->pickup_type = $request->pickup_type;
         $order->pickup_address = $request->pickup_address;
         $order->dropoff_type = $request->dropoff_type;
-        $order->dropoff_adress = $request->dropoff_adress;
+        $order->dropoff_address = $request->dropoff_address;
         $order->start_date = $request->start_date;
         $order->end_date = $request->end_date;
         $order->start_time = $request->start_time;

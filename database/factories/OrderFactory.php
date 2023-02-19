@@ -30,7 +30,7 @@ class OrderFactory extends Factory
             'pickup_type' => $this->faker->randomElement(['office' , 'other_location']),
             'pickup_address' => $this->faker->address(),
             'dropoff_type' => $this->faker->randomElement(['office' , 'other_location']),
-            'dropoff_adress' => $this->faker->address(),
+            'dropoff_address' => $this->faker->address(),
             'start_date' => $this->faker->date('d-m-Y'),
             'end_date' => $this->faker->date('d-m-Y'),
             'start_time' => $this->faker->time('H:i'),

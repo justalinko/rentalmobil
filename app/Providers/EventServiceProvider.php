@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\BookConfirm;
+use App\Events\OtherLocation;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -21,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         BookConfirm::class => [
             \App\Listeners\BookConfirmListen::class,
+        ],
+        OtherLocation::class => [
+            \App\Listeners\OtherLocationAction::class
         ]
     ];
 

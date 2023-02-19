@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\BookConfirm;
+use App\Events\OtherLocation;
 use Dompdf\Dompdf;
 use App\Models\Order;
 use App\Models\Armada;
@@ -70,7 +71,7 @@ class BookController extends Controller
         $order->pickup_type = $pickupType;
         $order->dropoff_type =$dropoffType;
         $order->pickup_address = $request->pickup_address;
-        $order->dropoff_adress = $request->dropoff_adress;
+        $order->dropoff_address = $request->dropoff_address;
         $order->start_date = $request->start_date;
         $order->end_date = $request->end_date;
         $order->start_time = $request->start_time;
@@ -129,6 +130,7 @@ class BookController extends Controller
         $order->note = '['.$request->code.']  Order '.$order->armada->brand.' '.$order->armada->type.' for '.$order->duration.' '.$order->duration_type.' with '.$request->payment_method.' payment method ';
         $order->save();
         BookConfirm::dispatch($request->code);
+        OtherLocation::dispatch($request->code);
         
         $armada = Armada::find($order->armada_id);
         $armada->used = $armada->used + 1;
