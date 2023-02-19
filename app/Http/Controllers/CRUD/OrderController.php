@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\CRUD;
 
-use App\Http\Controllers\Controller;
+use App\Events\BookConfirm;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Order;
 
 class OrderController extends Controller
 {
@@ -66,6 +68,8 @@ class OrderController extends Controller
         $order->additional_input = json_encode($request->addForm,JSON_PRETTY_PRINT);
         $order->created_by = auth()->user()->name;
         $order->save();
+
+        BookConfirm::dispatch($book0ng);
 
         return redirect('/admin/orders')->with('success' , 'Order created successfully')->with('order_success' , 'Order success with booking code : '.$order->booking_code.' <a href="/i/'.$order->booking_code.'" target="_blank">Click here to see invoice</a>');
     }
@@ -164,5 +168,31 @@ class OrderController extends Controller
         }
         
         return redirect('/admin/orders')->with('success','Status order updated to : '.$to);
+    }
+
+    public function orderActionApi(Request $request)
+    {
+        $booking = $request->booking_code;
+        $secret = $request->secret;
+        $secretValidate = sha1($booking);
+        $action = $request->action;
+        if($secret == $secretValidate)
+        {
+            $order = Order::where('booking_code' , $booking)->first();
+            if($order)
+            {
+                $msg = '['.$booking.'] Order status changed to ' .$action;
+                $order->status = $action;
+                $order->note = $msg;
+                $order->save();
+
+            return response()->json(['success' => true , 'error' => false , 'msg' => $msg] , 200 , [],JSON_PRETTY_PRINT);
+            }else{
+                return response()->json(['success' => false, 'error' => true , 'msg' => 'Booking Code Not found'] , 200 , [],JSON_PRETTY_PRINT);
+            }
+
+        }else{
+            return response()->json(['success' => false , 'error' => true , 'msg' => 'secret code not valid'] , 200 , [],JSON_PRETTY_PRINT);
+        }
     }
 }

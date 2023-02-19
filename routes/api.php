@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CRUD\OrderController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/rent-price', [RentController::class , 'calculatePriceApi']);
 Route::get('/payment-method/{id}' , [DashboardController::class , 'paymentMethodApi']);
+Route::get('/order-actions/{booking_code}' ,[OrderController::class , 'orderActionApi']);

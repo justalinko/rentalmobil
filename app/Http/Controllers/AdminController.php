@@ -66,7 +66,7 @@ class AdminController extends Controller
         $web->tiktok_url = $request->tiktok_url;        
         $web->save();
 
-        return redirect('/admin/general')->with('success','General setting has been updated');
+        return redirect('/admin/setting')->with('success','General setting has been updated');
     }
 
     public function login()
