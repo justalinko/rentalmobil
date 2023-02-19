@@ -172,6 +172,13 @@ class OrderController extends Controller
 
     public function orderActionApi(Request $request)
     {
+
+        $agentBlocked = ['bot','telegramBot' , 'whatsapp','whatsappbot','curl','spider','crawl'];
+        if(@preg_match("/".implode("|",$agentBlocked)."/i"  , $request->userAgent()))
+        {
+            die('UserAgent Blocked');
+        }
+
         $booking = $request->booking_code;
         $secret = $request->secret;
         $secretValidate = sha1($booking);

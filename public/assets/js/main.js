@@ -314,10 +314,16 @@
   });
 
 
-	$('#book_pick_date,#book_off_date').datepicker({
+	$('#book_pick_date').datepicker({
 	  startDate: '1d',
-	  format: 'd-m-yyyy'
+	  format: 'd-m-yyyy',
+	  autoclose:true
 	});
+	$('#book_off_date').datepicker({
+		startDate: '+1d',
+		format:'d-m-yyyy',
+		autoclose:true
+	})
 
 	$('#time_pick').timepicker({
 		'scrollDefault': 'now',

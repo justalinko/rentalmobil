@@ -74,33 +74,33 @@
             <div class="form-group row mt-3">
                 <div class="col-sm-3">
                     <label for="priceHour">+ Harga Late DropOff / Jam</label>
-                    <input type="number" class="form-control" id="priceHour" name="price_hour" placeholder="Harga/Jam" value="{{$isEdit ? $edit->price_hour : ''}}">
+                    <input type="number" required="required" class="form-control" id="priceHour" name="price_hour" placeholder="Harga/Jam" value="{{$isEdit ? $edit->price_hour : ''}}">
                 </div>
                 <div class="col-sm-3">
                     <label for="priceDay">Harga/Hari</label>
-                    <input type="number" class="form-control" id="priceDay" name="price_day" placeholder="Harga/Hari" value="{{$isEdit ? $edit->price_day : ''}}">
+                    <input type="number" required="required" class="form-control" id="priceDay" name="price_day" placeholder="Harga/Hari" value="{{$isEdit ? $edit->price_day : ''}}">
                 </div>
                 <div class="col-sm-3">
                     <label for="priceOther">Harga Lokasi Lain ( Dropoff & Pickup )</label>
-                    <input type="number" class="form-control" id="priceOther" name="price_otherlocation" placeholder="Harga Lokasi Lain" value="{{$isEdit ? $edit->price_otherlocation : ''}}">
+                    <input type="number" required="required" class="form-control" id="priceOther" name="price_otherlocation" placeholder="Harga Lokasi Lain" value="{{$isEdit ? $edit->price_otherlocation : ''}}">
                 </div>
                 <div class="col-sm-3">
                     <label for="priceDriver">Harga Dengan Supir</label>
-                    <input type="number" class="form-control" id="priceDirver" name="price_withdriver" placeholder="Harga dengan tambahan supir" value="{{$isEdit ? $edit->price_withdriver : ''}}">
+                    <input type="number" required="required" class="form-control" id="priceDirver" name="price_withdriver" placeholder="Harga dengan tambahan supir" value="{{$isEdit ? $edit->price_withdriver : ''}}">
                 </div>
             </div>
 
             <div class="form-group row mt-2">
                 <label for="stock" class="col-sm-3 col-form-label">Stock ( Dengan tipe yang sama )</label>
                 <div class="col-sm-9">
-                    <input type="number" class="form-control" name="stock" placeholder="10"  value="{{$isEdit ? $edit->stock : ''}}">
+                    <input type="number" required="required" class="form-control" name="stock" placeholder="10"  value="{{$isEdit ? $edit->stock : ''}}">
                 </div>
             </div>
             <div class="form-group row mt-2">
                 <label for="description" class="col-sm-3 col-form-label">Description</label>
                 <div class="col-sm-9">
 
-                    <textarea name="description" id="desc" class="form-control summernote" style="height:150px">{{$isEdit ? $edit->description : ''}}</textarea>
+                    <textarea name="description" required="required" id="desc" class="form-control summernote" style="height:150px">{{$isEdit ? $edit->description : ''}}</textarea>
                 </div>
             </div>
 

@@ -391,6 +391,18 @@
                 type : 'GET',
                 success:function(data)
                 {
+                    if(data.total < data.base)
+                    {
+                        Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                        btnConfirm: false,
+                        timer: 2000
+                    } , function(){
+                        window.location.reload();
+                    });
+                    }
                     $('#total_price').html(data.total_human);
                     $('#price_pickup').html(data.pickup_human);
                     $('#price_dropoff').html(data.dropoff_human);
@@ -442,6 +454,19 @@
                 var dur = DifferenceDay;
                 var msg = 'Rental Duration : ' + DifferenceDay + ' Day';
             }
+            if(DifferenceDay < 1)
+            {
+                Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Minumum duration is 1 day',
+                        btnConfirm: false,
+                        timer: 2000
+                    } , function(){
+                        window.location.reload();
+                    });
+            }
+
             $('#rentalDuration').html(msg);
             $('#rent_duration').html(msg);
             calculatePrice(type ,dur , {{$book->id}})

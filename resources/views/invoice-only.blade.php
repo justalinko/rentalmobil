@@ -22,7 +22,7 @@ $days = $diff->days;
         <header>
             <div class="row  pt-3">
                 <div class="col-sm-6 text-center text-sm-left mb-3 mb-sm-0">
-                    <h2 class="font-weight-bold">Rental <span class="text-danger">Mobil</span></h2>
+                    <h2 class="font-weight-bold">{!!web_name()!!} </h2>
                     <label>Booking ID <span class="font-weight-bold">#{{$order->booking_code}}</span></label>
                   <h4 class="font-weight-bold">STATUS : {!!invoiceStatus($order->status)!!} <span class="btn btn-info rounded-circle" data-toggle="modal" data-target="#infoStatus"><i class="fa fa-question"></i> </span></h4>
                 </div>

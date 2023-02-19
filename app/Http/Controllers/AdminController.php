@@ -127,7 +127,10 @@ class AdminController extends Controller
         $user = \App\Models\User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        if($request->password !== '')
+        {
+            $user->password = Hash::make($request->password);
+        }
         $user->save();
         return redirect('/admin/profile')->with('success','Profile has been updated');
     }

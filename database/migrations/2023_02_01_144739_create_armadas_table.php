@@ -21,12 +21,12 @@ return new class extends Migration
             $table->integer('seat')->nullable();
             $table->integer('luggage')->nullable();
             $table->enum('transmission',['manual','automatic','cvt','mt']);
-            $table->string('fuel');
+            $table->string('fuel')->default('petrol');
             $table->integer('price_hour');
             $table->integer('price_day');
             $table->integer('price_otherlocation');
             $table->integer('price_withdriver');
-            $table->string('stock');
+            $table->string('stock')->default(1);
             $table->string('used')->default(0);
             $table->text('description');
             $table->text('images');

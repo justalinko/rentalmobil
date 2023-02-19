@@ -103,5 +103,7 @@
             }
         });
     }
+
+    paymentMethodChange();
 </script>
 @endsection

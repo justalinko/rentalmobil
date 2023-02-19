@@ -23,7 +23,7 @@
         </div>
         <div class="col-3">
             <label for="vehicles">Vehicles Item</label>
-            <select name="vehicles" id="vehicles" class="form-control">
+            <select name="vehicles" id="vehicles" class="form-control select2">
                 <option value="all">All</option>
                 @foreach(\App\Models\Armada::all() as $vehicle)
                     <option value="{{$vehicle->id}}">{{$vehicle->type}} | {{$vehicle->brand}} {{$vehicle->name}}</option>

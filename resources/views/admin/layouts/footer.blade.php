@@ -13,6 +13,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="{{asset('assets/backend/assets/plugins/popper.min.js')}}"></script>
 <script src="{{asset('assets/backend/assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/backend/assets/js/app.js')}}"></script>
 
 
 <script src="{{asset('assets/js/bootstrap-datepicker.js')}}"></script>
@@ -25,6 +26,8 @@
 <!-- include summernote css/js -->
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $('.summernote').summernote({
       tabsize: 2,
@@ -39,6 +42,8 @@
         ['view', ['fullscreen', 'codeview', 'help']]
       ]
     });
+
+    $('.select2').select2();
   </script>
 
 @if(session('success'))

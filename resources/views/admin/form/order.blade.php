@@ -17,7 +17,7 @@
             <div class="form-group row">
                 <label for="vehicles" class="col-2">Vehicles</label>
                 <div class="col-10">
-                <select name="vehicles" id="vehicles" class="form-control">
+                <select name="vehicles" id="vehicles" class="form-control select2">
                     @foreach (\App\Models\Armada::all() as $vehicle)
                     @if($vehicle->stock == $vehicle->used) @continue @endif
                     <option value="{{$vehicle->id}}" data-price="{{$vehicle->price_day}}" @if($isEdit) @if($edit->armada_id == $vehicle->id) selected @endif @endif>{{$vehicle->type}} - {{$vehicle->brand}} {{$vehicle->name}} ( {{rupiah($vehicle->price_day)}} / day)</option>
@@ -84,22 +84,22 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="start_date">Start Date</label>
-                        <input type="text" name="start_date" id="rental_start" class="form-control" @if($isEdit) value="{{$edit->start_date}}" @else value="{{date('d-m-Y')}}" @endif>
+                        <input required="required" type="text" name="start_date" id="rental_start" class="form-control" @if($isEdit) value="{{$edit->start_date}}" @else value="{{date('d-m-Y')}}" @endif>
                     </div>
                 </div>
                 <div class="col-6">
                 
                     <label for="start_time">Start Time</label>
-                    <input type="text" name="start_time" @if($isEdit)  value="{{$edit->start_time}}" @else value="{{date('H:i')}}" @endif class="form-control tempek">
+                    <input required="required" type="text" name="start_time" @if($isEdit)  value="{{$edit->start_time}}" @else value="{{date('H:i')}}" @endif class="form-control tempek">
                 </div>
 
                 <div class="col-6">
                     <label for="end_date">End Date</label>
-                    <input type="text" name="end_date" id="rental_end" class="form-control"  @if($isEdit) value="{{$edit->end_date}}" @else value="{{date('d-m-Y',strtotime('+1 day'))}}" @endif>
+                    <input required="required"  type="text" name="end_date" id="rental_end" class="form-control"  @if($isEdit) value="{{$edit->end_date}}" @else value="{{date('d-m-Y',strtotime('+1 day'))}}" @endif>
                 </div>
                 <div class="col-6">
                     <label for="end_time">End Time</label>
-                    <input type="text" @if($isEdit)  value="{{$edit->end_time}}" @else value="{{date('H:i')}}" @endif  name="end_time"  class="form-control tempek">
+                    <input required="required" type="text" @if($isEdit)  value="{{$edit->end_time}}" @else value="{{date('H:i')}}" @endif  name="end_time"  class="form-control tempek">
                 </div>
             </div>
 
@@ -109,7 +109,7 @@
             <div class="form-group row mt-2">
                 <label for="{{$input}}" class="col-2">{{ucfirst($input)}}</label>
                 <div class="col-10">
-                    <input type="text" name="{{$input}}" id="{{$input}}" placeholder="{{$input}}" class="form-control" @if($isEdit) value="{{$edit->$input}}" @endif>
+                    <input required="required" type="text" name="{{$input}}" id="{{$input}}" placeholder="{{$input}}" class="form-control" @if($isEdit) value="{{$edit->$input}}" @endif>
                 </div>
             </div>
         @endforeach
@@ -117,7 +117,7 @@
             <div class="form-group row mt-3">
                 <label for="contact_type" class="col-2">Contact Type</label>
                 <div class="col-10">
-                    <select name="contact_type" class="form-control">
+                    <select name="contact_type" class="form-control select2">
                         <option value="whatsapp" @if($isEdit) @if($edit->contact_type == 'whatsapp') selected @endif @endif>Whatsapp</option>
                         <option value="telegram" @if($isEdit) @if($edit->contact_type == 'telegram') selected @endif @endif>Telegram</option>
                     </select>
@@ -127,7 +127,7 @@
             <div class="form-group row mt-3">
                 <label for="contact_id" class="col-2">Contact ID</label>
                 <div class="col-10">
-                    <input type="text" name="contact_id" id="contact_id" @if($isEdit) value="{{$edit->contact_id}}" @endif placeholder="Whatsapp number or telegram id" class="form-control">
+                    <input required="required" type="text" name="contact_id" id="contact_id" @if($isEdit) value="{{$edit->contact_id}}" @endif placeholder="Whatsapp number or telegram id" class="form-control">
                 </div>
             </div>
             @if(!$isEdit)
