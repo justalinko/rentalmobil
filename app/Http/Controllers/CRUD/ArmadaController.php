@@ -102,6 +102,7 @@ class ArmadaController extends Controller
         $armada->seat = $request->seat;
         $armada->description = $request->description;
         $armada->stock = $request->stock;
+        $armada->transmission = $request->transmission;
         $armada->save();
 
         return redirect()->back()->with('success','berhasil ditambahkan');
@@ -173,6 +174,7 @@ class ArmadaController extends Controller
         $armada->seat = $request->seat;
         $armada->description = $request->description;
         $armada->stock = $request->stock;
+        $armada->transmission = $request->transmission;
         $armada->save();
 
         return redirect()->back()->with('success','berhasil di ubah');
