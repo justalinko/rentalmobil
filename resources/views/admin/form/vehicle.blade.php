@@ -45,6 +45,12 @@
                     <input type="text" class="form-control" id="brand" name="brand" placeholder="Ex: Honda" placeholder="Brand" value="{{$isEdit ? $edit->brand : ''}}">
                 </div>
             </div>
+            <div class="form-group row mt-2">
+                <label for="brand" class="col-sm-2 col-form-label">Minimum DownPayment</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="dp" name="downpayment"  value="{{$isEdit ? $edit?->downpayment?->downpayment : ''}}">
+                </div>
+            </div>
 
             <div class="form-group row mt-3">
                 <div class="col-sm-3">

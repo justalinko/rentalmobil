@@ -4,6 +4,7 @@ namespace App\Http\Controllers\CRUD;
 
 use App\Http\Controllers\Controller;
 use App\Models\Armada;
+use App\Models\Downpayment;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -105,6 +106,11 @@ class ArmadaController extends Controller
         $armada->transmission = $request->transmission;
         $armada->save();
 
+        $downpayment = new \App\Models\Downpayment;
+        $downpayment->armada_id = $armada->id;
+        $downpayment->downpayment = $request->downpayment;
+        $downpayment->save();
+
         return redirect()->back()->with('success','berhasil ditambahkan');
     }
 
@@ -176,6 +182,10 @@ class ArmadaController extends Controller
         $armada->stock = $request->stock;
         $armada->transmission = $request->transmission;
         $armada->save();
+
+        $downpayment = Downpayment::where('armada_id',$id)->first();
+        $downpayment->downpayment = $request->downpayment;
+        $downpayment->save();
 
         return redirect()->back()->with('success','berhasil di ubah');
         

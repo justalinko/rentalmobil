@@ -134,7 +134,7 @@
             <div class="form-group row mt-2">
                 <label for="dp" class="col-2">Down Payment </label>
                 <div class="col-10">
-                    <input type="number" name="addForm[downpayment]" id="dp" placeholder="100000" class="form-control">
+                    <input type="number" name="addForm[downpayment]" id="dp" @if($isEdit) min="{{$edit->downpayment?->downpayment}}" @endif placeholder="100000" class="form-control">
                 </div>
             </div>
             <div class="wrapper-clone">  
